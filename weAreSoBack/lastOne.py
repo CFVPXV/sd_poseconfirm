@@ -12,9 +12,9 @@ def click_event(event, x, y, flags, params):
 mpDraw = mp.solutions.drawing_utils
 mpPose = mp.solutions.pose
 pose = mpPose.Pose()
-threshold = 95
+threshold = 290
 rng.seed(12345)
-img = cv2.imread("finalPoseProbably.jpg")
+img = cv2.imread("no_seriously.jpg")
 
 #cap = cv2.VideoCapture('W:\production_id_4608977 (1080p).mp4')
 #while True:
@@ -84,9 +84,10 @@ brute_test = dict({})
 with open("out.txt", "w") as f:
     for i in range(1000):
         for j in range(1000):
-            if cv2.pointPolygonTest(contours[0], (i,j), False) == 0.0:
+            if cv2.pointPolygonTest(contours[0], (i,j), False) == 1.0:
 
                 f.write(f"({i},{j})" + str(cv2.pointPolygonTest(contours[0], (i, j), False)) + "\n")
+
 
 #print(cv2.pointPolygonTest(contours[0], (0, 0), False))
 print(f"Are we in? {cv2.pointPolygonTest(contours[0], (landmarks[12][0], landmarks[12][1]), False)}")
