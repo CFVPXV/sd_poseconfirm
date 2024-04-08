@@ -26,10 +26,11 @@ const createPoseLandmarker = async () => {
   };
 
 
-function angleCount() {
-  Math.atan();
-  Math.atan();
+function angleMeasure(XShoulder, YShoulder, XWrist, YWrist, XWaist, YWaist) {
+  let WrS = Math.atan2(XWrist - XShoulder, YWrist - YShoulder);
+  let WaS = Math.atan2(XWaist - XShoulder, YWaist - YShoulder);
 
+  return WrS - WaS;
 }
 
 const video = document.getElementById("webcam") as HTMLVideoElement;
@@ -85,6 +86,8 @@ async function predictWebcam() {
         });
         drawingUtils.drawConnectors(landmark, PoseLandmarker.POSE_CONNECTIONS);
       }
+      console.log(angleMeasure(result.landmarks[12].x, result.landmarks[12].y, result.landmarks[16].x, result.landmarks[16].y, result.landmarks[24].x, result.landmarks[24].y))
+      console.log(angleMeasure(result.landmarks[11].x, result.landmarks[11].y, result.landmarks[15].x, result.landmarks[15].y, result.landmarks[23].x, result.landmarks[23].y))
       canvasCtx.restore();
     });
   }
